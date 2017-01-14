@@ -1,0 +1,16 @@
++============================+
+|                            |
+| SurvivalTest M0d Changelog |
+|                            |
++============================+
+
+PR0T0TYPE[0]:
+
+- Added health bar.
+- Added fall damage.
+- Added permadeath.
+- Added death screen.
+- Added generating level screen.
+- Added level loading screen.
+- The player now starts out with nothing.
+- Inventory disabled.
