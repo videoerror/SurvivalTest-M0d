@@ -77,9 +77,15 @@ namespace ClassicalSharp.Survival {
 			// Assigns the wrapper value by creating a new instance and inputing the needed game element value.
 			wrapper = new Wrapper(game);
 
+			// Assigns the old inventory keybinding value to the current inventory keybinding.
+			OldInventoryKeybind = wrapper.GetInputHandler.Keys[KeyBind.Inventory];
+
 			// Attaches the method for loading the player's inventory to the on new map loaded event for initialization.
 			wrapper.GetWorldEvents.OnNewMapLoaded += LoadInventory;
 			wrapper.GetWorldEvents.OnNewMap += Respawn;
+
+			// Attaches the method for rebinding the inventory keybind on game window closing.
+			((INativeWindow)game.window).Closed += RebindInventoryKeybind;
 		}
 
 		// Declares and assigns the under heart texture for the health bar.
@@ -216,12 +222,23 @@ namespace ClassicalSharp.Survival {
 			}
 		}
 
+		// Declares the old inventory keybinding.
+		private Key OldInventoryKeybind;
+
 		/// <summary>
 		/// Responsible for managing the player's inventory.
 		/// </summary>
 		private void InventoryManager() {
-			// Assigns the inventory key bind to an unknown key so it can't be opened, essentially disabling the GUI.
+			// Assigns the inventory keybinding to an unknown key so it can't be opened, essentially disabling the GUI.
 			wrapper.GetInputHandler.Keys[KeyBind.Inventory] = Key.Unknown;
+		}
+
+		/// <summary>
+		/// Responsible for rebinding the inventory keybind.
+		/// </summary>
+		private void RebindInventoryKeybind(object sender, EventArgs eventArgs) {
+			// Assigns the inventory keybinding to the old inventory keybinding.
+			wrapper.GetInputHandler.Keys[KeyBind.Inventory] = OldInventoryKeybind;
 		}
 
 		// Declares the player's old fall height.
