@@ -47,9 +47,11 @@ namespace ClassicalSharp.Survival.UI {
 
 			// Creates a new instance of text widget for the generate new level text using the game value
 			// and the regular font value.
-			TextWidget GenerateNewLevelText = new TextWidget(game, regularFont);
+			ChatTextWidget GenerateNewLevelText = new ChatTextWidget(game, regularFont);
+
 			// Initializes the generate level text value.
 			GenerateNewLevelText.Init();
+
 			// Sets the text for the generate level text value
 			GenerateNewLevelText.SetText("Generate new level");
 

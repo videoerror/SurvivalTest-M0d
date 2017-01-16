@@ -39,13 +39,15 @@ namespace ClassicalSharp.Survival.UI {
 
 			backCol = new FastColour(128, 0, 0, 128);
 
-			TextWidget GameOverText = new TextWidget(game, new Font(regularFont.FontFamily, 32, regularFont.Style));
+			Font GameOverTextFont = new Font(regularFont.FontFamily, 32, regularFont.Style);
+
+			ChatTextWidget GameOverText = new ChatTextWidget(game, GameOverTextFont);
 
 			GameOverText.Init();
 
 			GameOverText.SetText("Game over!");
 
-			TextWidget ScoreText = new TextWidget(game, regularFont);
+			ChatTextWidget ScoreText = new ChatTextWidget(game, regularFont);
 
 			ScoreText.Init();
 

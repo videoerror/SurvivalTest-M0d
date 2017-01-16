@@ -41,11 +41,13 @@ namespace ClassicalSharp.Survival.UI {
 		public override void Init() {
 			base.Init();
 
-			TextWidget LoadLevelText = new TextWidget(game, regularFont);
+			ChatTextWidget LoadLevelText = new ChatTextWidget(game, regularFont);
+
 			LoadLevelText.Init();
 			LoadLevelText.SetText("Load level");
 
-			TextWidget HtmlErrorText = new TextWidget(game, regularFont);
+			ChatTextWidget HtmlErrorText = new ChatTextWidget(game, regularFont);
+
 			HtmlErrorText.Init();
 			HtmlErrorText.SetText("<html>");
 
