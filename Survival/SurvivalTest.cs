@@ -243,6 +243,8 @@ namespace ClassicalSharp.Survival {
 
 		// Declares the player's fall position.
 		Vector3I FallPosition;
+		// Declares the player's ground position.
+		Vector3I GroundPosition;
 
 		// Declares the player's fall height.
 		private int FallHeight;
@@ -259,7 +261,9 @@ namespace ClassicalSharp.Survival {
 					FallPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
 				}
 			} else {
-				FallHeight = FallPosition.Y - (int)wrapper.GetLocalPlayer.Position.Y;
+				GroundPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
+
+				FallHeight = FallPosition.Y - GroundPosition.Y;
 
 				FallDamage = Math.Max(0, FallHeight - 3);
 
@@ -267,12 +271,14 @@ namespace ClassicalSharp.Survival {
 
 				FallHeight = 0;
 
-				if(wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.Water ||
-				   wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.StillWater ||
-				   wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.Lava ||
-				   wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.StillLava) {
+				if(wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.Water ||
+				   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.StillWater ||
+				   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.Lava ||
+				   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.StillLava) {
 					FallDamage = 0;
 				}
+
+				GroundPosition = Vector3I.Zero;
 			}
 		}
 		// Declares and assigns the player's health.
