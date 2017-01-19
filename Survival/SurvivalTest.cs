@@ -266,6 +266,13 @@ namespace ClassicalSharp.Survival {
 				FallPosition = Vector3I.Zero;
 
 				FallHeight = 0;
+
+				if(wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.Water ||
+				   wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.StillWater ||
+				   wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.Lava ||
+				   wrapper.GetWorld.SafeGetBlock((Vector3I)wrapper.GetLocalPlayer.Position) == Block.StillLava) {
+					FallDamage = 0;
+				}
 			}
 		}
 		// Declares and assigns the player's health.
