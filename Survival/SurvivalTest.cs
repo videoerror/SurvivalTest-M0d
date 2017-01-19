@@ -241,8 +241,9 @@ namespace ClassicalSharp.Survival {
 			wrapper.GetInputHandler.Keys[KeyBind.Inventory] = OldInventoryKeybind;
 		}
 
-		// Declares the player's old fall height.
-		private int OldFallHeight;
+		// Declares the player's fall position.
+		Vector3I FallPosition;
+
 		// Declares the player's fall height.
 		private int FallHeight;
 		// Declares the player's fall damage.
@@ -253,50 +254,20 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		// TODO Finish commenting the "CalculateFallDamage" method.
 		private void CalculateFallDamage() {
-			// Checks if the player is in the air so it can start calculating the fall damage otherwise,
-			// reset the old fall height, fall height, and fall damage values.
 			if(!wrapper.GetLocalPlayer.onGround) {
-				// Asigns the fall height value to zero resetting it for re-evaluation.
-				FallHeight = 0;
-
-				// Declares and assigns the fall position to the player's current position.
-				Vector3I fallPosition = new Vector3I((int)wrapper.GetLocalPlayer.Position.X, (int)wrapper.GetLocalPlayer.Position.Y, (int)wrapper.GetLocalPlayer.Position.Z);
-
-				// Responsbile for getting the blocks under the player with a range of twenty-five blocks.
-				for(int height = 0; height < 25; height++) {
-					// Checks if the fall position is an air block so it can subtract one from the fall position value otherwise,
-					// the fall height, the old fall height, and the fall damage values are all evaluated.
-					if(wrapper.GetWorld.SafeGetBlock(fallPosition) == Block.Air) {
-						fallPosition.Y--;
-					} else {
-						FallHeight = (int)wrapper.GetLocalPlayer.Position.Y - fallPosition.Y - 1;
-
-						if(OldFallHeight < FallHeight) {
-							OldFallHeight = FallHeight;
-						}
-
-						if(OldFallHeight > 3) {
-							FallDamage = Math.Max(0, OldFallHeight - 3);
-						}
-
-						if(wrapper.GetWorld.SafeGetBlock(fallPosition) == Block.StillWater ||
-						   wrapper.GetWorld.SafeGetBlock(fallPosition) == Block.Water ||
-						   wrapper.GetWorld.SafeGetBlock(fallPosition) == Block.StillLava ||
-						   wrapper.GetWorld.SafeGetBlock(fallPosition) == Block.Lava) {
-							FallDamage = 0;
-						}
-					}
+				if(wrapper.GetLocalPlayer.Position.Y > FallPosition.Y) {
+					FallPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
 				}
 			} else {
-				// Assigns the old fall height to zero resetting it for re-evaluation.
-				OldFallHeight = 0;
-				// Assigns the fall height to zero resetting it for re-evaluation.
+				FallHeight = FallPosition.Y - (int)wrapper.GetLocalPlayer.Position.Y;
+
+				FallDamage = Math.Max(0, FallHeight - 3);
+
+				FallPosition = Vector3I.Zero;
+
 				FallHeight = 0;
-				// Assigns the fall damage to zero resetting it for re-evaluation.
-				FallDamage = 0;
 			}
 		}
-
 		// Declares and assigns the player's health.
 		public int Health = 20;
 		// Declares and assigns the player's maximum possible health.
