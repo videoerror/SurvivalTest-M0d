@@ -158,7 +158,7 @@ namespace ClassicalSharp.Survival {
 				// Otherwise if the player's health is at the maximum possible health.
 				// Otherwise the half heart offset is assigned to negative one.
 				// This procedure ensures that an extra half heart isn't rendered.
-				if(Health == MinimumHealth) {
+				if(Health == MinHealth) {
 					halfHeartOffset = 1;
 				} else if(Health == MaxHealth) {
 					halfHeartOffset = 0;
@@ -284,7 +284,7 @@ namespace ClassicalSharp.Survival {
 		// Declares and assigns the player's health.
 		public int Health = 20;
 		// Declares and assigns the player's maximum possible health.
-		private const int MinimumHealth = 0;
+		private const int MinHealth = 0;
 		// Declares and assigns the player's maximum possible health.
 		private const int MaxHealth = 20;
 		// Declares a state of whether the player is dead or alive.
@@ -319,7 +319,7 @@ namespace ClassicalSharp.Survival {
 			}
 
 			// Prevents the player's health from becoming too low or too high in the event of a possible stack underflow or overflow and displays the death screen.
-			if(Health <= MinimumHealth) {
+			if(Health <= MinHealth) {
 				// Checks if the player is dead so it can display the death screen.
 				if(IsDead) {
 					// Sets the formost screen to the death screen.
@@ -330,7 +330,7 @@ namespace ClassicalSharp.Survival {
 				}
 
 				// Assigns the player's health to the minimum health.
-				Health = MinimumHealth;
+				Health = MinHealth;
 			} else if(Health >= MaxHealth) {
 				// Assigns whether the player is dead to false so when the player's health becomes too low again the death screen can be displayed.
 				IsDead = true;
