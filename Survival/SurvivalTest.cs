@@ -137,6 +137,15 @@ namespace ClassicalSharp.Survival {
 			// Declares and assigns the half heart offset used for deciding whether to render an extra half heart or not.
 			int halfHeartOffset = 1;
 
+			// Assigns the half heart offset to one if the remainder of the player's health divided by two equals zero,
+			// otherwise the half heart offset is assigned to minus one.
+			// This procedure ensures that an extra half heart isn't rendered.
+			if(Health % 2 == 0) {
+				halfHeartOffset = 1;
+			} else {
+				halfHeartOffset = -1;
+			}
+
 			// Responsible for rendering the half heart textures.
 			for(int halfHeart = 0; halfHeart < Health / 2 - halfHeartOffset; halfHeart++) {
 				// Assigns the X value for the half heart texture using the hotbar's X value,
@@ -153,18 +162,6 @@ namespace ClassicalSharp.Survival {
 				halfHeartTex.Render(wrapper.GetIGraphicsAPI);
 				// Tells the graphics API we no longer need to apply texturing when rasterizing primitives.
 				wrapper.GetIGraphicsAPI.Texturing = false;
-
-				// Assigns the half heart offset to one if the player's health is at the minimum possible health.
-				// Otherwise if the player's health is at the maximum possible health.
-				// Otherwise the half heart offset is assigned to negative one.
-				// This procedure ensures that an extra half heart isn't rendered.
-				if(Health == MinHealth) {
-					halfHeartOffset = 1;
-				} else if(Health == MaxHealth) {
-					halfHeartOffset = 0;
-				} else {
-					halfHeartOffset = -1;
-				}
 			}
 
 			// Responsible for rendering the heart textures.
