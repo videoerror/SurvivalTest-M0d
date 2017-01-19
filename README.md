@@ -10,4 +10,4 @@ Installation is fairly simple. First your going to need the latest release binar
 
 # Connect
 
-What's that? You'd like to be involved? Well sure! We have a Discord channel where you as a community member can interact and track the project [here](https://discord.gg/Ct82V8f).
+What's that? You'd like to be involved? Well sure! We have a Discord server where you as a community member can interact and track the project [here](https://discord.gg/Ct82V8f).
