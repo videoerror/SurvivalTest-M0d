@@ -14,3 +14,10 @@ PR0T0TYPE[0]:
 - Added level loading screen.
 - The player now starts out with nothing.
 - Inventory disabled.
+
+PR0T0TYPE[1]:
+
+- Fixed font glitch.
+- Fixed half heart rendering.
+- Enhanced inventory management.
+- Enhanced fall damage calculations.
