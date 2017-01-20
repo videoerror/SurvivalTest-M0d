@@ -60,7 +60,7 @@ namespace ClassicalSharp.Survival.UI {
 			// Initializes the game over text value.
 			GameOverText.Init();
 
-			// Sets the text of the game over text's value by using the needed text as: "Game over!".
+			// Sets the text of the game over text's value by using the needed text value as "Game over!".
 			GameOverText.SetText("Game over!");
 
 			// Declares and assigns the score text to a new chat text widget by using the needed game value
@@ -151,13 +151,13 @@ namespace ClassicalSharp.Survival.UI {
 		/// </summary>
 		public override void Render(double delta) {
 			// Moves the game over text by using the needed new X value as the game width divided by two
-			// minus the game over text's width divided by two and the new Y value as the score text's Y value
+			// minus the game over text's width value divided by two and the new Y value as the score text's Y value
 			// minus the generate new level or respawn title button element's Y value
 			// minus the score text's Y value.
 			widgets[0].MoveTo(game.Width / 2 - widgets[0].Width / 2, widgets[1].Y - (widgets[2].Y - widgets[1].Y));
 			// Moves the score text by using the needed new X value as the game width value divided by two
-			// minus the score text's width divided by two and the new Y value as the game height value divided by two
-			// minus the score text's height divided by two.
+			// minus the score text's width value divided by two and the new Y value as the game height value divided by two
+			// minus the score text's height value divided by two.
 			widgets[1].MoveTo(game.Width / 2 - widgets[1].Width / 2, game.Height / 2 - widgets[1].Height / 2);
 
 			// Renders the base class's elements. This is required since it was overrided with this method.
