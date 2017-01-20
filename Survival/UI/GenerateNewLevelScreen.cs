@@ -136,7 +136,7 @@ namespace ClassicalSharp.Survival.UI {
 		public override void Render(double delta) {
 			// Moves the game over text by using the needed new X value as the game width divided by two
 			// minus the generate new level text's width divided by two and the new Y value as the small title's Y value
-			// minus the generate new level text's height value minus the small title's height divided by two.
+			// minus the generate new level text's height value minus the small title button elements's height divided by two.
 			widgets[0].MoveTo(game.Width / 2 - widgets[0].Width / 2, (widgets[1].Y - widgets[0].Height) - widgets[1].Height / 2);
 
 			// Renders the base extended and inherited class's elements.
