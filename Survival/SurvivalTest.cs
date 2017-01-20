@@ -68,7 +68,7 @@ namespace ClassicalSharp.Survival {
 		private readonly Wrapper wrapper;
 
 		/// <summary>
-		/// Called upon class instantiation and used for initialization.
+		/// Responsible for class instantiation and used for initialization.
 		/// </summary>
 		public SurvivalTest(Game game) {
 			// Assigns the main game value to the inputed game paramter.

@@ -33,6 +33,9 @@ namespace ClassicalSharp.Survival {
 		// Declares the game value.
 		private readonly Game game;
 
+		/// <summary>
+		/// Responsible for class instantiation and used for initialization.
+		/// </summary>
 		public Wrapper(Game game) {
 			// Assigns the game value to the game paramter.
 			this.game = game;

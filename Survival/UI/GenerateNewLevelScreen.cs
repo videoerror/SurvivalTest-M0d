@@ -33,6 +33,9 @@ namespace ClassicalSharp.Survival.UI {
 		// Declares the wrapper value.
 		private readonly Wrapper wrapper;
 
+		/// <summary>
+		/// Responsible for class instantiation and used for initialization.
+		/// </summary>
 		public GenerateNewLevelScreen(Game game) : base(game) {
 			// Assigns the wrapper value to a new wrapper by using the needed game value.
 			wrapper = new Wrapper(game);
