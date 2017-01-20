@@ -137,12 +137,13 @@ namespace ClassicalSharp.Survival {
 			// Declares and assigns the half heart offset used for deciding whether to render an extra half heart or not.
 			int halfHeartOffset = 1;
 
-			// Assigns the half heart offset to one if the remainder of the player's health divided by two equals zero,
-			// otherwise the half heart offset is assigned to minus one.
-			// This procedure ensures that an extra half heart isn't rendered.
+			// Detects whether the player's health is an even or odd number,
+			// ensuring that an extra half heart isn't or is rendered.
 			if(Health % 2 == 0) {
+				// Assigns the half heart offset to one.
 				halfHeartOffset = 1;
 			} else {
+				// Assigns the half heart offset to minus one.
 				halfHeartOffset = -1;
 			}
 
