@@ -33,7 +33,7 @@ namespace ClassicalSharp.Survival {
 		// Declares and assigns the mod name.
 		public const string ModName = "SurvivalTest M0d";
 		// Declares and assigns the mod version.
-		public const string ModVersion = "PR0T0TYPE[0]";
+		public const string ModVersion = "PR0T0TYPE[1]";
 		// Declares and assigns the mod author.
 		public const string ModAuthor = "video_error";
 		// Declares and assigns the mod name with ampersand color codes.
