@@ -23,10 +23,11 @@ using OpenTK.Input;
 namespace ClassicalSharp.Survival {
 
 	/// <summary>
-	/// A static helper class containing miscellaneous helpful elements used for the survival test mod.
+	/// A helper class for miscellaneous helper objects.
 	/// </summary>
-	internal sealed class Utilities {
+	internal static class Utilities {
 
+		// Declares the default hander.
 		public delegate void Handler();
 
 		/// <summary>
