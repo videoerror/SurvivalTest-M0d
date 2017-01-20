@@ -251,30 +251,41 @@ namespace ClassicalSharp.Survival {
 		/// <summary>
 		/// Responsible for evaluating the player's fall damage.
 		/// </summary>
-		// TODO Finish commenting the "CalculateFallDamage" method.
 		private void CalculateFallDamage() {
+			// Detects whether the player is on the ground and when the player is not.
 			if(!wrapper.GetLocalPlayer.onGround) {
+				// Detects whether the player's Y value is greater than the fall position.
 				if(wrapper.GetLocalPlayer.Position.Y > FallPosition.Y) {
+					// Assigns the fall position to the player's position.
 					FallPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
 				}
 			} else {
+				// Assigns the ground position to the current player's position.
+				// This is prevents possible inaccuracies in the claclulations from using the player's position which is susceptible to change.
 				GroundPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
 
+				// Assigns the fall height to the fall position's Y value minus the ground position's Y value.
 				FallHeight = FallPosition.Y - GroundPosition.Y;
 
+				// Assigns the fall damage to the greater value of the two values: zero or the fall height minus three.
 				FallDamage = Math.Max(0, FallHeight - 3);
 
+				// Assigns the fall position's X, Y, and Z values back to zero, essentially resetting it.
 				FallPosition = Vector3I.Zero;
 
+				// Assigns the fall height to zero, essentially resetting it.
 				FallHeight = 0;
 
+				// Detects whether the player's ground block is water, still water, lava or still lava.
 				if(wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.Water ||
 				   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.StillWater ||
 				   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.Lava ||
 				   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.StillLava) {
+					// Assigns the player's fall damage to zero, essentially resetting it.
 					FallDamage = 0;
 				}
 
+				// Assigns the player's ground position to zero, essentially resetting it.
 				GroundPosition = Vector3I.Zero;
 			}
 		}
