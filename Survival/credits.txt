@@ -1,6 +1,8 @@
 video_error - Developed 89.99% of the SurvivalTest M0d's code base.
-UnknownShadow200 - Often submitted code to him when I had issues and he almost immediatly identified them,
-                   working as a much needed second perspective.
-123DMWM - Helped test the mod.
-XenonMan - Helped test the mod.
-Lemon - Helped test the mod.
+UnknownShadow200 - Often submitted code to him when an issue would arise and he'd point and help me fix inefficies, code prone to bad performance, compatibility issues, and memory leaks. He gave me a second perspective on many occasions. Much thanks, mate! =)
+123DMWM - Helped test the mod and reported bugs, and been a great moderator for the Discord server so far. Then again, we haven't really had anything happen. :\ =P
+Goodlyay - Tested the mod, critiques, and provided some great moderinizing ideas. Senior CPE master genious man dude guy person. X_X
+Cheesse - Extensively tested, helped, developed, critique, and provided solutions. =D
+XenonMan - Tested the mod and reported bugs, and allowed me to use his Discord server on several ocassions to spread awareness of the mod. Thanks, dude! =D
+Lemon - Test the mod and reported bugs, and spammed "SAD" or "sad." ;'(
+_Pear - Test and reported bugs but mostly shared dank memes, making the Discord server a funnier place. ;)
