@@ -30,124 +30,141 @@ namespace ClassicalSharp.Survival {
 	/// </summary>
 	internal sealed class Wrapper {
 
-		// Declares the main game variable responsible for all other game elements.
+		// Declares the game value.
 		private readonly Game game;
 
 		public Wrapper(Game game) {
+			// Assigns the game value to the game paramter.
 			this.game = game;
 		}
 
 		/// <summary>
-		/// Grabs the block info element which is responsible for most other block related elements.
+		/// Responsible for the grabbing of the block info element.
 		/// </summary>
 		public BlockInfo GetBlockInfo {
 			get {
+				// Returns the block info element.
 				return game.BlockInfo;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the chat element which is responsible for most other chat related elements.
+		/// Responsible for the grabbing of the chat element.
 		/// </summary>
 		public Chat GetChat {
 			get {
+				// Returns the chat element.
 				return game.Chat;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the graphics API interface which is responsible for all graphics related elements.
+		/// Responsible for the grabbing of the graphics API interface element.
 		/// </summary>
 		public IGraphicsApi GetIGraphicsAPI {
 			get {
+				// Returns the graphics API interface element.
 				return game.Graphics;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the gui interface which is responsible for most other GUI related elements.
+		/// Responsible for the grabbing of the GUI interface element.
 		/// </summary>
 		public GuiInterface GetIGuiInterface {
 			get {
+				// Returns the GUI interface element.
 				return game.Gui;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the inventory which is responsible for all inventory related elements.
-		/// </summary>
-		public Inventory GetInventory {
-			get {
-				return game.Inventory;
-			}
-		}
-
-		/// <summary>
-		/// Grabs the input handler which is responsible for most other input related elements.
+		/// Responsible for the grabbing of the input handler element.
 		/// </summary>
 		public InputHandler GetInputHandler {
 			get {
+				// Returns the input handler element.
 				return game.InputHandler;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the local player which is responsible for most client sided player related elements.
+		/// Responsible for the grabbing of the inventory element.
+		/// </summary>
+		public Inventory GetInventory {
+			get {
+				// Returns the inventory element.
+				return game.Inventory;
+			}
+		}
+
+		/// <summary>
+		/// Responsible for the grabbing of the server element.
+		/// </summary>
+		public IServerConnection GetServerConnection {
+			get {
+				// Returns the server element.
+				return game.Server;
+			}
+		}
+
+		/// <summary>
+		/// Responsible for the grabbing of the local player element.
 		/// </summary>
 		public LocalPlayer GetLocalPlayer {
 			get {
+				// Returns the local player element.
 				return game.LocalPlayer;
 			}
 		}
 
 
 		/// <summary>
-		/// Grabs the all other events which is responsible for all miscellaneous event related elements.
+		/// Responsible for the grabbing of other events element.
 		/// </summary>
 		public OtherEvents GetOtherEvents {
 			get {
+				// Returns the other events element.
 				return game.Events;
 			}
 		}
 
-		public IServerConnection GetServerConnection {
-			get {
-				return game.Server;
-			}
-		}
-
 		/// <summary>
-		/// Grabs the single player server which is responsible for most other single player related elements.
+		/// Responsible for the grabbing of the single player server elementt.
 		/// </summary>
 		public SinglePlayerServer GetSinglePlayerServer {
 			get {
+				// Returns the casted single player server to the server element.
 				return (SinglePlayerServer)game.Server;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the survival test element which is responsible for most other survival related elements.
+		/// Responsible for the grabbing of the survival test element.
 		/// </summary>
 		public SurvivalTest GetSurvivalTest {
 			get {
+				// Returns the survival test element.
 				return game.LocalPlayer.Survival;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the world element which is responsible for managing most other world related elements.
+		/// Responsible for the grabbing of the world element.
 		/// </summary>
 		public World GetWorld {
 			get {
+				// Returns the world element.
 				return game.World;
 			}
 		}
 
 		/// <summary>
-		/// Grabs the world events element which is responsible for managing all world event related elements.
+		/// Responsible for the grabbing of the world events element.
 		/// </summary>
 		public WorldEvents GetWorldEvents {
 			get {
+				// Returns the world events element.
 				return game.WorldEvents;
 			}
 		}
