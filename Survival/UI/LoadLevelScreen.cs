@@ -111,7 +111,7 @@ namespace ClassicalSharp.Survival.UI {
 					wrapper.GetWorldEvents.RaiseOnNewMapLoaded();
 
 					if(game.AllowServerTextures && wrapper.GetWorld.TextureUrl != null) {
-						wrapper.GetServerConnection.RetrieveTexturePack(wrapper.GetWorld.TextureUrl);
+						wrapper.GetIServerConnection.RetrieveTexturePack(wrapper.GetWorld.TextureUrl);
 					}
 
 					LocationUpdate update = LocationUpdate.MakePosAndOri(wrapper.GetLocalPlayer.Spawn, wrapper.GetLocalPlayer.SpawnYaw, wrapper.GetLocalPlayer.SpawnPitch, false);

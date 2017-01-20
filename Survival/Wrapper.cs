@@ -101,7 +101,7 @@ namespace ClassicalSharp.Survival {
 		/// <summary>
 		/// Responsible for the grabbing of the server element.
 		/// </summary>
-		public IServerConnection GetServerConnection {
+		public IServerConnection GetIServerConnection {
 			get {
 				// Returns the server element.
 				return game.Server;

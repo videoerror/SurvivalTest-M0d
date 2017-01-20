@@ -75,7 +75,7 @@ namespace ClassicalSharp.Survival.UI {
 			ScoreText.SetText("Score: &e" + wrapper.GetSurvivalTest.Score);
 
 			// Detects whether the game is running in single player mode or not.
-			if(wrapper.GetServerConnection.IsSinglePlayer) {
+			if(wrapper.GetIServerConnection.IsSinglePlayer) {
 				// Assigns the widgets array value to a new widgets array.
 				widgets = new Widget[] {
 					// Adds the game over text.
