@@ -41,9 +41,9 @@ namespace ClassicalSharp.Survival {
 		// Declares and assigns the mod name with percent color codes.
 		public const string ModNamePercent = "%cSurvival%eTest %cM0d";
 		// Declares and assigns the mod version with ampersand color codes.
-		public const string ModVersionAmpersand = "&5PR0T0TYPE&8[&d0&8]";
+		public const string ModVersionAmpersand = "&5PR0T0TYPE&8[&d1&8]";
 		// Declares and assigns the mod version with percent color codes.
-		public const string ModVersionPercent = "%5PR0T0TYPE%8[%d0%8]";
+		public const string ModVersionPercent = "%5PR0T0TYPE%8[%d1%8]";
 		// Declares and assigns the mod author with ampersand color codes.
 		public const string ModAuthorAmpersand = "&fv&ei&bd&ae&do&8_&cerror";
 		// Declares and assigns the mod author with percent color codes.
