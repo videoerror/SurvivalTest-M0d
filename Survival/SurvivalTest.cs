@@ -88,6 +88,11 @@ namespace ClassicalSharp.Survival {
 			((INativeWindow)game.window).Closed += RebindInventoryKeybind;
 		}
 
+		public void Render(BlockHotbarWidget hotbar) {
+			RenderHealthBar(hotbar);
+			RenderBubbleBar(hotbar);
+		}
+
 		// Declares and assigns the under heart texture for the health bar.
 		private TextureRec UnderHeartTexRect = new TextureRec(16/256F, 0/256F, 9/256F, 9/256F);
 		// Declares and assigns the heart texture for the health bar.
@@ -98,7 +103,7 @@ namespace ClassicalSharp.Survival {
 		/// <summary>
 		/// Responsible for rendering the player's health bar ingame.
 		/// </summary>
-		public void RenderHealthBar(BlockHotbarWidget hotbar) {
+		private void RenderHealthBar(BlockHotbarWidget hotbar) {
 			// Declares and assigns the evaluation of the selected block's size.
 			int selectedBlockSize = (int)Math.Ceiling(22.5F * 2 * game.GuiHotbarScale);
 			// Declares and assigns the evaluation of the hotbar's scale which is used for the scale of the heart textures.
@@ -188,7 +193,7 @@ namespace ClassicalSharp.Survival {
 
 		private TextureRec BubbleTexRec = new TextureRec(16/256F, 18/256F, 9/256F, 9/256F);
 
-		public void RenderBubbleBar(BlockHotbarWidget hotbar) {
+		private void RenderBubbleBar(BlockHotbarWidget hotbar) {
 			if(CanRenderBubbleBar) {
 				int selectedBlockSize = (int)Math.Ceiling(22.5F * 2 * game.GuiHotbarScale);
 				int scale = (int)(18 * game.GuiHotbarScale);
