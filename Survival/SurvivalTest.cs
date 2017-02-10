@@ -184,6 +184,37 @@ namespace ClassicalSharp.Survival {
 			}
 		}
 
+		bool CanRenderBubbleBar;
+
+		private TextureRec BubbleTexRec = new TextureRec(16/256F, 18/256F, 9/256F, 9/256F);
+
+		public void RenderBubbleBar(BlockHotbarWidget hotbar) {
+			if(CanRenderBubbleBar) {
+				int selectedBlockSize = (int)Math.Ceiling(22.5F * 2 * game.GuiHotbarScale);
+				int scale = (int)(18 * game.GuiHotbarScale);
+
+				float offset = 16 * game.GuiHotbarScale;
+
+				int xValue = 0;
+				int yValue = game.Height - selectedBlockSize - scale * 2 - 2;
+				int iconTex = wrapper.GetIGuiInterface.IconsTex;
+
+				wrapper.GetIGraphicsAPI.BindTexture(iconTex);
+
+				for(int bubble = 0; bubble < LungCapacity; bubble++) {
+					xValue = hotbar.X + (int)(bubble * offset);
+
+					Texture bubbleTex = new Texture(iconTex, xValue, yValue, scale, scale, BubbleTexRec);
+
+					wrapper.GetIGraphicsAPI.Texturing = true;
+
+					bubbleTex.Render(wrapper.GetIGraphicsAPI);
+
+					wrapper.GetIGraphicsAPI.Texturing = false;
+				}
+			}
+		}
+
 		// <summary>
 		// Responsible for all other main survival test loops and methods.
 		// </summary>
@@ -194,8 +225,12 @@ namespace ClassicalSharp.Survival {
 			InventoryManager();
 			// Calls the method for managing the player's health.
 			HealthManager();
+			// Calls the method for managing the player's lung capacity.
+			LungCapacityManager();
 			// Calls the method for fall damage evaluation.
 			CalculateFallDamage();
+			// Calls the method for lava damage evaluation.
+			CalculateLavaDamage();
 			// Calls the method for managing the player's score.
 			ScoreManager();
 		}
@@ -290,12 +325,74 @@ namespace ClassicalSharp.Survival {
 				GroundPosition = Vector3I.Zero;
 			}
 		}
+
+		public int LungCapacity = 10;
+		private const int MinLungCapacity = 0;
+		private const int MaxLungCapacity = 10;
+
+		private DateTime LastLungCapacityTime = DateTime.UtcNow;
+		private DateTime LastDrownDamageTime = DateTime.UtcNow;
+
+		/// <summary>
+		/// Responsible for evaluating the player's lung capacity.
+		/// </summary>
+		private void LungCapacityManager() {
+			if(wrapper.GetLocalPlayer.BlockAtHead == Block.Water ||
+			   wrapper.GetLocalPlayer.BlockAtHead == Block.StillWater) {
+				CanRenderBubbleBar = true;
+
+				if((DateTime.UtcNow - LastLungCapacityTime).TotalSeconds >= 1.5D) {
+					if(LungCapacity > MinLungCapacity) {
+						LungCapacity -= 1;
+
+						LastLungCapacityTime = DateTime.UtcNow;
+					} else {
+						if((DateTime.UtcNow - LastDrownDamageTime).TotalSeconds >= 0.5D) {
+							Health -= 2;
+
+							LastDrownDamageTime = DateTime.UtcNow;
+						}
+					}
+				}
+			} else {
+				CanRenderBubbleBar = false;
+
+				LungCapacity = MaxLungCapacity;
+
+				LastLungCapacityTime = DateTime.UtcNow;
+				LastDrownDamageTime = DateTime.UtcNow;
+			}
+		}
+
+		private DateTime LastLavaDamageTime = DateTime.UtcNow;
+
+		/// <summary>
+		/// Responsible for evaluating the player's lava damage.
+		/// </summary>
+		private void CalculateLavaDamage() {
+			Vector3I GroundPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
+
+			if(wrapper.GetLocalPlayer.BlockAtHead == Block.Lava ||
+			   wrapper.GetLocalPlayer.BlockAtHead == Block.StillLava ||
+			   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.Lava ||
+			   wrapper.GetWorld.SafeGetBlock(GroundPosition) == Block.StillLava) {
+				if((DateTime.UtcNow - LastLavaDamageTime).TotalSeconds >= 0.5D) {
+					Health -= 10;
+
+					LastLavaDamageTime = DateTime.UtcNow;
+				}
+			} else {
+				LastLavaDamageTime = DateTime.UtcNow;
+			}
+		}
+
 		// Declares and assigns the player's health.
 		public int Health = 20;
 		// Declares and assigns the player's maximum possible health.
 		private const int MinHealth = 0;
 		// Declares and assigns the player's maximum possible health.
 		private const int MaxHealth = 20;
+
 		// Declares a state of whether the player is dead or alive.
 		private bool IsDead;
 
