@@ -219,7 +219,6 @@ namespace ClassicalSharp.Survival {
 		}
 
 		Vector3I FallPosition;
-		Vector3I GroundPosition;
 
 		private int FallHeight;
 		private int FallDamage;
@@ -233,7 +232,7 @@ namespace ClassicalSharp.Survival {
 					FallPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
 				}
 			} else {
-				GroundPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
+				Vector3I GroundPosition = (Vector3I)wrapper.GetLocalPlayer.Position;
 
 				FallHeight = FallPosition.Y - GroundPosition.Y;
 
