@@ -21,3 +21,10 @@ PR0T0TYPE[1]:
 - Fixed half heart rendering.
 - Enhanced inventory management.
 - Enhanced fall damage calculations.
+
+PR0T0TYPE[2]:
+
+ - Added bubble bar UI.
+ - Added water drowning damage.
+ - Added lava damage.
+ 
