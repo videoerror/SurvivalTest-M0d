@@ -18,8 +18,10 @@ limitations under the License.
 
 using System;
 using System.Drawing;
+
 using ClassicalSharp.Gui.Screens;
 using ClassicalSharp.Gui.Widgets;
+
 using OpenTK.Input;
 
 namespace ClassicalSharp.Survival.UI {
@@ -29,87 +31,55 @@ namespace ClassicalSharp.Survival.UI {
 	/// </summary>
 	internal sealed class DeathScreen : MenuOptionsScreen {
 
-		// Declares the wrapper value.
 		private readonly Wrapper wrapper;
 
 		/// <summary>
-		/// Responsible for class instantiation and used for initialization.
+		/// Responsible for class constructing and used for initialization.
 		/// </summary>
 		public DeathScreen(Game game) : base(game) {
-			// Assigns the wrapper value to a new wrapper by using the needed game value.
 			wrapper = new Wrapper(game);
 		}
 
 		/// <summary>
-		/// Responsible for initializing the death screen's elements.
+		/// Responsible for initializing the death screen's GUI elements.
 		/// </summary>
 		public override unsafe void Init() {
-			// Initializes the base extended and inherited class's elements.
-			// This is required since it was overrided with this method.
 			base.Init();
 
-			// Assigns the death screen's back color to a new fast colour by using the needed red value as 128,
-			// the green value as zero, the blue value as zero, and alpha value as 128.
 			backCol = new FastColour(128, 0, 0, 128);
 
-			// Declares and assigns the game over text's font to a new font by using the needed regular font's font family value,
-			// font size value as thirty-two, and the regular font's style value.
 			Font GameOverTextFont = new Font(regularFont.FontFamily, 32, regularFont.Style);
 
-			// Declares and assigns the game over text to a new chat text widget by using the needed game value
-			// and game over text font value.
 			ChatTextWidget GameOverText = new ChatTextWidget(game, GameOverTextFont);
 
-			// Initializes the game over text value.
 			GameOverText.Init();
 
-			// Sets the text of the game over text's value by using the needed text value as "Game over!".
 			GameOverText.SetText("Game over!");
 
-			// Declares and assigns the score text to a new chat text widget by using the needed game value
-			// and regular font value.
 			ChatTextWidget ScoreText = new ChatTextWidget(game, regularFont);
 
-			// Initializes the score text value.
 			ScoreText.Init();
 
-			// Sets the text of the score text's value by using the needed text as: "Score: &e" plus
-			// the player's score value.
 			ScoreText.SetText("Score: &e" + wrapper.GetSurvivalTest.Score);
 
-			// Detects whether the game is running in single player mode or not.
 			if(wrapper.GetIServerConnection.IsSinglePlayer) {
-				// Assigns the widgets array value to a new widgets array.
 				widgets = new Widget[] {
-					// Adds the game over text.
 					GameOverText,
-					// Adds the score text.
 					ScoreText,
 
-					// Adds the generate new level title by using the needed direction value as zero,
-					// the Y value as one-hundred, the text as "Generate new level...", and the generate new level handler.
 					MakeTitle(0, 100, "Generate new level...", GenerateNewLevelHandler),
-					// Adds the load level title by using the needed direction value as zero,
-					// the Y value as one-hundred, the text as "Load level...", and the load level handler.
 					MakeTitle(0, 150, "Load level...", LoadLevelHandler),
 
-					// Adds the last two values as null.
 					null,
 					null
 				};
 			} else {
-				// Assigns the widgets array value to a new widgets array.
 				widgets = new Widget[] {
-					// Adds the game over text.
 					GameOverText,
-					// Adds the score text.
 					ScoreText,
 
-					// Adds the load level title by using the needed direction value as zero,
-					// the Y value as one-hundred, the text as "respawn", and the load level handler.
 					MakeTitle(0, 100, "Respawn", RespawnHandler),
 
-					// Adds the last two values as null.
 					null,
 					null
 				};
@@ -117,62 +87,46 @@ namespace ClassicalSharp.Survival.UI {
 		}
 
 		/// <summary>
-		/// Responsible for handling the generate new level title button element.
+		/// Responsible for handling the generate new level title button.
 		/// </summary>
 		private void GenerateNewLevelHandler(Game game, Widget widget, MouseButton mouseButton) {
-			// Detects whether the mouse button equals the left mouse button and whether the mouse is pressed.
 			if(mouseButton == MouseButton.Left && game.IsMousePressed(mouseButton)) {
-				// Sets the foremost screen to the generate new level screen.
 				wrapper.GetIGuiInterface.SetNewScreen(new GenerateNewLevelScreen(game));
 			}
 		}
 
 		/// <summary>
-		/// Responsible for handling the respawn title button element.
+		/// Responsible for handling the respawn title button.
 		/// </summary>
 		private void RespawnHandler(Game game, Widget widget, MouseButton mouseButton) {
-			// Detects whether the mouse button equals the left mouse button and whether the mouse is pressed.
 			if(mouseButton == MouseButton.Left && game.IsMousePressed(mouseButton)) {
-				// Respawns the player using the needed sender as null and the event arguments as null
-				// because it is not being raised as an event.
 				wrapper.GetSurvivalTest.Respawn(null, null);
 			}
 		}
 
 		/// <summary>
-		/// Responsible for handling the load level title button element.
+		/// Responsible for handling the load level title button.
 		/// </summary>
 		private void LoadLevelHandler(Game game, Widget widget, MouseButton mouseButton) {
 			if(mouseButton == MouseButton.Left && game.IsMousePressed(mouseButton)) {
-				// Sets the foremost screen to the load level screen.
 				wrapper.GetIGuiInterface.SetNewScreen(new LoadLevelScreen(game));
 			}
 		}
 
 		/// <summary>
-		/// Responsible for rendering all the death screen elements.
+		/// Responsible for rendering all the death screen GUI elements.
 		/// </summary>
 		public override void Render(double delta) {
-			// Moves the game over text by using the needed new X value as the game width divided by two
-			// minus the game over text's width value divided by two and the new Y value as the score text's Y value
-			// minus the generate new level or respawn title button element's Y value
-			// minus the score text's Y value.
-			widgets[0].MoveTo(game.Width / 2 - widgets[0].Width / 2, widgets[1].Y - (widgets[2].Y - widgets[1].Y));
-			// Moves the score text by using the needed new X value as the game width value divided by two
-			// minus the score text's width value divided by two and the new Y value as the game height value divided by two
-			// minus the score text's height value divided by two.
-			widgets[1].MoveTo(game.Width / 2 - widgets[1].Width / 2, game.Height / 2 - widgets[1].Height / 2);
-
-			// Renders the base class's elements. This is required since it was overrided with this method.
 			base.Render(delta);
+
+			widgets[0].MoveTo(game.Width / 2 - widgets[0].Width / 2, widgets[1].Y - (widgets[2].Y - widgets[1].Y));
+			widgets[1].MoveTo(game.Width / 2 - widgets[1].Width / 2, game.Height / 2 - widgets[1].Height / 2);
 		}
 
 		/// <summary>
 		/// Responsible for handling when a key is down.
 		/// </summary>
 		public override bool HandlesKeyDown(Key key) {
-			// Disables the ESC key by using the needed GUI interface,
-			// the key parameter, this instance, and a new instance of the death screen with the needed game value.
 			return Utilities.DisableEscapeKey(wrapper.GetIGuiInterface, key, this, new DeathScreen(game));
 		}
 	}

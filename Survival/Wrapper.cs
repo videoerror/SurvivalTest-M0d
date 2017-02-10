@@ -17,11 +17,14 @@ limitations under the License.
 #endregion
 
 using System;
+
 using ClassicalSharp.Entities;
 using ClassicalSharp.Events;
 using ClassicalSharp.GraphicsAPI;
 using ClassicalSharp.Map;
 using ClassicalSharp.Singleplayer;
+
+using OpenTK;
 
 namespace ClassicalSharp.Survival {
 
@@ -30,11 +33,10 @@ namespace ClassicalSharp.Survival {
 	/// </summary>
 	internal sealed class Wrapper {
 
-		// Declares the game value.
 		private readonly Game game;
 
 		/// <summary>
-		/// Responsible for class instantiation and used for initialization.
+		/// Responsible for class constructing and used for initialization.
 		/// </summary>
 		public Wrapper(Game game) {
 			// Assigns the game value to the game paramter.
@@ -46,7 +48,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public BlockInfo GetBlockInfo {
 			get {
-				// Returns the block info element.
 				return game.BlockInfo;
 			}
 		}
@@ -56,7 +57,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public Chat GetChat {
 			get {
-				// Returns the chat element.
 				return game.Chat;
 			}
 		}
@@ -66,8 +66,16 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public IGraphicsApi GetIGraphicsAPI {
 			get {
-				// Returns the graphics API interface element.
 				return game.Graphics;
+			}
+		}
+
+		/// <summary>
+		/// Responsible for the grabbing of the native window interface element.
+		/// </summary>
+		public INativeWindow GetINativeWindow {
+			get {
+				return ((INativeWindow)GetIPlatformWindow);
 			}
 		}
 
@@ -76,7 +84,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public GuiInterface GetIGuiInterface {
 			get {
-				// Returns the GUI interface element.
 				return game.Gui;
 			}
 		}
@@ -86,7 +93,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public InputHandler GetInputHandler {
 			get {
-				// Returns the input handler element.
 				return game.InputHandler;
 			}
 		}
@@ -96,8 +102,16 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public Inventory GetInventory {
 			get {
-				// Returns the inventory element.
 				return game.Inventory;
+			}
+		}
+
+		/// <summary>
+		/// Responsible for the grabbing of the platform window interface element.
+		/// </summary>
+		public IPlatformWindow GetIPlatformWindow {
+			get {
+				return game.window;
 			}
 		}
 
@@ -106,7 +120,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public IServerConnection GetIServerConnection {
 			get {
-				// Returns the server element.
 				return game.Server;
 			}
 		}
@@ -116,7 +129,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public LocalPlayer GetLocalPlayer {
 			get {
-				// Returns the local player element.
 				return game.LocalPlayer;
 			}
 		}
@@ -127,7 +139,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public OtherEvents GetOtherEvents {
 			get {
-				// Returns the other events element.
 				return game.Events;
 			}
 		}
@@ -137,7 +148,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public SinglePlayerServer GetSinglePlayerServer {
 			get {
-				// Returns the casted single player server to the server element.
 				return (SinglePlayerServer)game.Server;
 			}
 		}
@@ -147,7 +157,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public SurvivalTest GetSurvivalTest {
 			get {
-				// Returns the survival test element.
 				return game.LocalPlayer.Survival;
 			}
 		}
@@ -157,7 +166,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public World GetWorld {
 			get {
-				// Returns the world element.
 				return game.World;
 			}
 		}
@@ -167,7 +175,6 @@ namespace ClassicalSharp.Survival {
 		/// </summary>
 		public WorldEvents GetWorldEvents {
 			get {
-				// Returns the world events element.
 				return game.WorldEvents;
 			}
 		}

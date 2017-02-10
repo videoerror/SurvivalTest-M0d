@@ -17,7 +17,9 @@ limitations under the License.
 #endregion
 
 using System;
+
 using ClassicalSharp.Gui.Screens;
+
 using OpenTK.Input;
 
 namespace ClassicalSharp.Survival {
@@ -27,7 +29,6 @@ namespace ClassicalSharp.Survival {
 	/// </summary>
 	internal static class Utilities {
 
-		// Declares the default hander.
 		public delegate void Handler();
 
 		/// <summary>
